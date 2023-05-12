@@ -20,6 +20,7 @@ def run_rdp(args: List[str]) -> str:
     # Test SSL/TLS verions
     context.verify_mode = ssl.CERT_NONE
     ssl_disabled = False
+    print(args)
 
     try:
         with socket.create_connection((args, port)) as sock:
@@ -40,20 +41,6 @@ def run_rdp(args: List[str]) -> str:
         else:
             print("The certificate is not self-signed.")
 
-        # Printing certificate information in Windows format
-        print("Detection time:", detection_time)
-        print("Version:", x509_cert.version)
-        print("Serialnumber:", hex(x509_cert.serial_number)[2:])
-        print("Signature hashalgorithm:", x509_cert.signature_hash_algorithm.name)
-        print("Issuer:", x509_cert.issuer.rfc4514_string())
-        print("valid from:", x509_cert.not_valid_before)
-        print("Valid until:", x509_cert.not_valid_after)
-        print("Subject:", x509_cert.subject.rfc4514_string())
-        print("PublicKey Hex:", x509_cert.public_key().public_bytes(
-            encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo).hex())
-        print("PublicKey Data:", x509_cert.public_key().public_bytes(
-            encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo).decode())
-        
         data = {
                 "address": args, 
                 "time": detection_time,
