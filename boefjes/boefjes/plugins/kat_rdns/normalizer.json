@@ -1,0 +1,9 @@
+{
+    "id": "kat_wpfuzz_normalize",
+    "consumes": [
+        ""
+    ],
+    "produces": [
+        ""
+    ]
+}
