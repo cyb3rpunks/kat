@@ -1,0 +1,9 @@
+{
+    "id": "kat_rdp_normalize",
+    "consumes": [
+        ""
+    ],
+    "produces": [
+        ""
+    ]
+}
