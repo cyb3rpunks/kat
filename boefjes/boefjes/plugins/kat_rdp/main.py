@@ -20,7 +20,6 @@ def run_rdp(args: List[str]) -> str:
     # Test SSL/TLS verions
     context.verify_mode = ssl.CERT_NONE
     ssl_disabled = False
-    print(args)
 
     try:
         with socket.create_connection((args, port)) as sock:
