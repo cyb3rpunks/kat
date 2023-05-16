@@ -3,7 +3,7 @@ from typing import List, Tuple, Union
 import socket
 import ssl
 from cryptography import x509
-from cryptography.hazmat.backends import default_backend c
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.serialization import PublicFormat, Encoding
 import datetime
 import json
