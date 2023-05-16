@@ -10,18 +10,18 @@ import json
 
 from boefjes.job_models import BoefjeMeta
 
-def run_rdp(args: List[str]) -> str:
+def run_rdp(args: List[str]) -> dict:
     """Remote Desktop Security Check"""
     port = 3389
     context = ssl.create_default_context()
     context.check_hostname = False
 
-    # Test SSL/TLS verions
+    # Test SSL/TLS versions
     context.verify_mode = ssl.CERT_NONE
 
     detection_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    cert = ssl.get_server_certificate((args, port))
+    cert = ssl.get_server_certificate((args, port))  # Assuming args is a list with a single address
     x509_cert = x509.load_pem_x509_certificate(cert.encode(), default_backend())
     if x509_cert.issuer == x509_cert.subject:
         print("[!] The certificate is self-signed.")
@@ -29,19 +29,21 @@ def run_rdp(args: List[str]) -> str:
         print("The certificate is not self-signed.")
 
     data = {
-            "address": args, 
-            "time": detection_time,
-            "serialnumber":hex(x509_cert.serial_number)[2:],
-            "sig_algorithm":x509_cert.signature_hash_algorithm.name,
-            "issuer":x509_cert.issuer.rfc4514_string(),
-            "validfrom":x509_cert.not_valid_before,
-            "validuntil":x509_cert.not_valid_after,
-            "subject":x509_cert.subject.rfc4514_string(),
-            "pubhex":x509_cert.public_key().public_bytes(
-    encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo).hex(),
-            "pubdata":x509_cert.public_key().public_bytes(
-    encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo).decode(),
-            }
+        "address": args,  # Assuming args is a list with a single address
+        "time": detection_time,
+        "serialnumber": hex(x509_cert.serial_number)[2:],
+        "sig_algorithm": x509_cert.signature_algorithm_oid._name,
+        "issuer": x509_cert.issuer.rfc4514_string(),
+        "validfrom": x509_cert.not_valid_before.strftime("%Y-%m-%d %H:%M:%S"),
+        "validuntil": x509_cert.not_valid_after.strftime("%Y-%m-%d %H:%M:%S"),
+        "subject": x509_cert.subject.rfc4514_string(),
+        "pubhex": x509_cert.public_key().public_bytes(
+            encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo
+        ).hex(),
+        "pubdata": x509_cert.public_key().public_bytes(
+            encoding=Encoding.PEM, format=PublicFormat.SubjectPublicKeyInfo
+        ).decode(),
+    }
     return data
 
 
