@@ -49,7 +49,8 @@ def run_rdp(args: List[str]) -> str:
 
 def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     """return results to normalizer."""
-    args = boefje_meta.arguments["input"]
-    results = run_rdp(args)
+    input_ = boefje_meta.arguments["input"]
+    ip_address = input_["address"]
+    results = run_rdp(ip_address)
     return [(set(), json.dumps(results))]
 
