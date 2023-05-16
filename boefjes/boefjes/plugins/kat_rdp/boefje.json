@@ -3,8 +3,7 @@
     "name": "Remote Desktop",
     "description": "Remote Desktop Security Test tool",
     "consumes": [
-        "IPAddressV4",
-        "Hostname"
+        "IPAddressV4"
     ],
     "produces": [
         "Finding"
