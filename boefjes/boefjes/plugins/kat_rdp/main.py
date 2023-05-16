@@ -21,7 +21,7 @@ def run_rdp(args: List[str]) -> dict:
 
     detection_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    cert = ssl.get_server_certificate((args, port))  # Assuming args is a list with a single address
+    cert = ssl.get_server_certificate((args, port))
     x509_cert = x509.load_pem_x509_certificate(cert.encode(), default_backend())
     if x509_cert.issuer == x509_cert.subject:
         print("[!] The certificate is self-signed.")
@@ -29,7 +29,7 @@ def run_rdp(args: List[str]) -> dict:
         print("The certificate is not self-signed.")
 
     data = {
-        "address": args,  # Assuming args is a list with a single address
+        "address": args,
         "time": detection_time,
         "serialnumber": hex(x509_cert.serial_number)[2:],
         "sig_algorithm": x509_cert.signature_algorithm_oid._name,
