@@ -1,4 +1,3 @@
-
 from typing import List, Tuple, Union
 
 import socket
@@ -60,10 +59,8 @@ def run_rdp(args: List[str]) -> str:
 
 
 def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
-   """return results to normalizer."""
+    """return results to normalizer."""
     input_ = boefje_meta.arguments["input"]
     ip_address = input_["address"]
     results = run_rdp(ip_address)
     return [(set(), json.dumps(results))]
-
-
