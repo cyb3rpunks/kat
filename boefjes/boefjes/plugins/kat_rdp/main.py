@@ -1,26 +1,21 @@
 from typing import List, Tuple, Union
-
-import socket
-import ssl
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.serialization import PublicFormat, Encoding
+from boefjes.job_models import BoefjeMeta
+import socket
+import ssl
 import datetime
 import json
 
-from boefjes.job_models import BoefjeMeta
 
 def run_rdp(args: List[str]) -> dict:
     """Remote Desktop Security Check"""
     port = 3389
     context = ssl.create_default_context()
     context.check_hostname = False
-
-    # Test SSL/TLS versions
     context.verify_mode = ssl.CERT_NONE
-
     detection_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
     cert = ssl.get_server_certificate((args, port))
     x509_cert = x509.load_pem_x509_certificate(cert.encode(), default_backend())
     if x509_cert.issuer == x509_cert.subject:
