@@ -31,9 +31,8 @@ def run_rdp(args: List[str]) -> str:
     data = {
             "address": args, 
             "time": detection_time,
-            "version": x509_cert.version,
             "serialnumber":hex(x509_cert.serial_number)[2:],
-            "sig":x509_cert.signature_hash_algorithm.name,
+            "sig_algorithm":x509_cert.signature_hash_algorithm.name,
             "issuer":x509_cert.issuer.rfc4514_string(),
             "validfrom":x509_cert.not_valid_before,
             "validuntil":x509_cert.not_valid_after,
