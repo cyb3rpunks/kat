@@ -1,5 +1,7 @@
 import paramiko
 import json
+from boefjes.job_models import BoefjeMeta
+
 
 def run_ssh_cyphers(ip_address, port, username, password: List[str]) -> dict:
     """Checks SSH Cyphers avialable on ssh server"""
