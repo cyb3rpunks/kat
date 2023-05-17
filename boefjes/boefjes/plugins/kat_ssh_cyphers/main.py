@@ -37,8 +37,8 @@ def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     """return results to normalizer."""
     input_ = boefje_meta.arguments["input"]
     ip_address = input_["address"]
-    username = getenv("username")
-    password = getenv("password")
+    username = getenv("SSH_USERNAME")
+    password = getenv("SSH_PASSWORD")
     port = 22
     results = run_ssh_cyphers(ip_address, port, username, password)
     return [(set(), json.dumps(results))]
