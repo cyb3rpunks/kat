@@ -1,0 +1,17 @@
+{
+    "id": "ssh_cyphers",
+    "name": "SSH Cyphers",
+    "description": "Show the available cyphers on a ssh server",
+    "consumes": [
+        "IPAddressV4"
+    ],
+    "produces": [
+        "Finding",
+    ],
+    "environment_keys": [
+        "username",
+        "password"
+    ],
+
+    "scan_level": 4
+}
