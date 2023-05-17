@@ -20,7 +20,8 @@ def run_ssh_cyphers(ip_address, port, username, password: List[str]) -> dict:
         # Get the list of supported ciphers
         ciphers = transport.get_security_options().ciphers
         result = {"Available SSH Ciphers": ciphers}
-        return result
+        json_result = json.dumps(result, indent=4)
+        return json_result
 
     except paramiko.AuthenticationException:
         print("Authentication failed.")
