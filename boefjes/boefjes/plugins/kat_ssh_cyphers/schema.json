@@ -3,7 +3,7 @@
     "type": "object",
     "properties": {
         "SSH_USERNAME": {
-            "title": "SSH_Username",
+            "title": "SSH_USERNAME",
             "maxLength": 128,
             "type": "string",
             "description": "The username of the ssh server"
