@@ -1,5 +1,7 @@
 import paramiko
 import json
+from os import getenv
+from typing import List, Tuple, Union
 from boefjes.job_models import BoefjeMeta
 
 
