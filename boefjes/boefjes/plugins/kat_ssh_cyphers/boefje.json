@@ -6,12 +6,11 @@
         "IPAddressV4"
     ],
     "produces": [
-        "Finding",
+        "Finding"
     ],
     "environment_keys": [
         "username",
         "password"
     ],
-
     "scan_level": 4
 }
