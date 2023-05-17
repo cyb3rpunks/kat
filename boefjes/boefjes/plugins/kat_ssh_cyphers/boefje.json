@@ -9,8 +9,8 @@
         "Finding"
     ],
     "environment_keys": [
-        "username",
-        "password"
+        "SSH_USERNAME",
+        "SSH_PASSWORD"
     ],
     "scan_level": 4
 }
