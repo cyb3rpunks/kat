@@ -7,7 +7,10 @@ from boefjes.job_models import BoefjeMeta
 
 def run_ssh_cyphers(ip_address, port, username, password: List[str]) -> dict:
     """Checks SSH Cyphers avialable on ssh server"""
-  # Create an SSH client
+    # Load credentials
+    username = getenv("SSH_USERNAME")
+    password = getenv("SSH_PASSWORD")
+    # Create an SSH client
     client = paramiko.SSHClient()
     try:
         # Automatically add the server's host key (disable if not desired)
@@ -37,8 +40,6 @@ def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     """return results to normalizer."""
     input_ = boefje_meta.arguments["input"]
     ip_address = input_["address"]
-    username = getenv("SSH_USERNAME")
-    password = getenv("SSH_PASSWORD")
     port = 22
     results = run_ssh_cyphers(ip_address, port, username, password)
     return [(set(), json.dumps(results))]
