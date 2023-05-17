@@ -7,9 +7,6 @@ from boefjes.job_models import BoefjeMeta
 
 def run_ssh_cyphers(ip_address, port, username, password: List[str]) -> dict:
     """Checks SSH Cyphers avialable on ssh server"""
-    # Load credentials
-    username = getenv("SSH_USERNAME")
-    password = getenv("SSH_PASSWORD")
     # Create an SSH client
     client = paramiko.SSHClient()
     try:
@@ -41,6 +38,8 @@ def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     input_ = boefje_meta.arguments["input"]
     ip_address = input_["address"]
     port = 22
+    username = getenv("SSH_USERNAME")
+    password = getenv("SSH_PASSWORD")
     results = run_ssh_cyphers(ip_address, port, username, password)
     return [(set(), json.dumps(results))]
 
