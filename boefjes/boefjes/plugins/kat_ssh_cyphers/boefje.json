@@ -12,5 +12,5 @@
         "SSH_USERNAME",
         "SSH_PASSWORD"
     ],
-    "scan_level": 4
+    "scan_level": 3
 }
