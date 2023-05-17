@@ -1,6 +1,6 @@
 {
     "id": "ssh-cyphers",
-    "name": "SSH Cyphers",
+    "name": "SSHCyphers",
     "description": "Show the available cyphers on a ssh server",
     "consumes": [
         "IPAddressV4"
