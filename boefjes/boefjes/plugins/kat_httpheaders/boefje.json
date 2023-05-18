@@ -3,7 +3,7 @@
     "name": "HTTPHeaders",
     "description": "Show the http headers",
     "consumes": [
-        "URL"
+        "HostnameHTTPURL"
     ],
     "produces": [
         "HTTPHeader"
