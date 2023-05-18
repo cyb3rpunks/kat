@@ -3,10 +3,11 @@
     "name": "HTTPHeaders",
     "description": "Show the http headers",
     "consumes": [
-        "IPAddressV4"
+        "Hostname",
+        "HostnameHTTPURL"
     ],
     "produces": [
-        "Finding"
+        "HTTPHeader"
     ],
     "environment_keys": [
     ],
