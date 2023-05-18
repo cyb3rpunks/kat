@@ -8,12 +8,14 @@ from boefjes.job_models import BoefjeMeta
 def run_httpheaders(url: List[str]) -> dict:
     """Checks HTTPHeaders"""
     try:
-        response = requests.get(url, timeout=30)
-        headers = dict(response.headers)
-        headers_json = json.dumps(headers, indent=4).replace("'", '"')
+        response = requests.get(url, timeout=10)
+        headers = response.headers
+        result = {"url": url, "headers": headers}
+        return result
     except Timeout:
         print("Timeout occurred while making the request.")
-        return headers_json
+        result = {"url": url, "timeout": "timeout"}
+        return result
 
 def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     """return results to normalizer."""
