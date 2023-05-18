@@ -1,0 +1,9 @@
+{
+    "id": "kat_http_headers_normalize",
+    "consumes": [
+        ""
+    ],
+    "produces": [
+        ""
+    ]
+}

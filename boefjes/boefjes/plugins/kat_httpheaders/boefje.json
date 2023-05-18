@@ -1,0 +1,14 @@
+{
+    "id": "http-Headers",
+    "name": "HTTPHeaders",
+    "description": "Show the http headers",
+    "consumes": [
+        "IPAddressV4"
+    ],
+    "produces": [
+        "Finding"
+    ],
+    "environment_keys": [
+    ],
+    "scan_level": 2
+}
