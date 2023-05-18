@@ -7,7 +7,6 @@ from boefjes.job_models import BoefjeMeta
 
 def run_httpheaders(url: List[str]) -> dict:
     """Checks HTTPHeaders"""
-    # Create an SSH client
     try:
         response = requests.get(url, timeout=30)
         headers = dict(response.headers)
