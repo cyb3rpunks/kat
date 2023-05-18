@@ -18,8 +18,7 @@ def run_httpheaders(url: List[str]) -> dict:
 
 def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     """return results to normalizer."""
-    input_ = boefje_meta.arguments["input"]
-    url = input_["address"]
+    url = boefje_meta.arguments["input"]["url"]
     results = run_httpheaders(url)
     return [(set(), json.dumps(results))]
 
