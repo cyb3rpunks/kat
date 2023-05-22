@@ -1,0 +1,9 @@
+{
+    "id": "kat_lfi_scanner_normalize",
+    "consumes": [
+        ""
+    ],
+    "produces": [
+        ""
+    ]
+}

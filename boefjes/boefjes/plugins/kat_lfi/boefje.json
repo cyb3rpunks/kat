@@ -1,0 +1,14 @@
+{
+    "id": "lfi-scanner",
+    "name": "HTTPHeaders",
+    "description": "Scan a server for LFI vulnerabilities",
+    "consumes": [
+        "HostnameHTTPURL"
+    ],
+    "produces": [
+        "HTTPHeader"
+    ],
+    "environment_keys": [
+    ],
+    "scan_level": 2
+}
