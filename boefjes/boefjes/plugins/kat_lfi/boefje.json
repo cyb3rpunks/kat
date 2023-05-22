@@ -1,6 +1,6 @@
 {
     "id": "lfi-scanner",
-    "name": "HTTPHeaders",
+    "name": "LFIScanner",
     "description": "Scan a server for LFI vulnerabilities",
     "consumes": [
         "HostnameHTTPURL"
