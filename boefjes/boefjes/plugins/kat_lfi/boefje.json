@@ -6,7 +6,7 @@
         "HostnameHTTPURL"
     ],
     "produces": [
-        "HTTPHeader"
+        "Finding"
     ],
     "environment_keys": [
     ],
