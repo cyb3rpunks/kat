@@ -44,7 +44,10 @@ def run(boefje_meta: BoefjeMeta) -> List[Tuple[set, Union[bytes, str]]]:
     path = input_["path"]
     port = input_["port"]
     scheme = input_["scheme"]
-    url = f"{scheme}://{hostname}{port}{path}"
+    if port != None: 
+        url = f"{scheme}://{hostname}:{port}{path}"
+    else:
+        url = f"{scheme}://{hostname}{path}"
     results = lfi_scanner(url)
     return [(set(), json.dumps(results))]
 
