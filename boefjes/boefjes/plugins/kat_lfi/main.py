@@ -22,7 +22,7 @@ def lfi_scanner(url: List[str]) -> dict:
             "../../var/log/apache2/access.log",
             # Add more payloads here...
         ]
-
+    result = {'url': url, 'vulnerabilities': []}
     # Iterate over the payloads
     for payload in payloads:
         try:
@@ -31,7 +31,6 @@ def lfi_scanner(url: List[str]) -> dict:
             # If the response code is 200, then the site may be vulnerable
             if response.status_code == 200:
                 # Append the payload and response to the vulnerabilities list
-                result = {'url': url, 'vulnerabilities': []}
                 result['vulnerabilities'].append({'payload': payload, 'response': response.text})
         except Exception as e:
             # If there's an error (like a network error), skip this payload
