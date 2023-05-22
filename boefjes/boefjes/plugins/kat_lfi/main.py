@@ -7,7 +7,7 @@ from boefjes.job_models import BoefjeMeta
 
 
 def lfi_scanner(url: List[str]) -> dict:
-    """Checks HTTPHeaders"""
+    """Checks a webserver path for lfi"""
     payloads = [
             "/etc/passwd", 
             "../etc/passwd", 
