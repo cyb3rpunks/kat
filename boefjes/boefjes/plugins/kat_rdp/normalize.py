@@ -27,11 +27,11 @@ def run(normalizer_meta: NormalizerMeta, raw: Union[bytes, str]) -> Iterable[OOI
         )
         yield nla_finding
 
-        # Selfsigned Check
+        # Self-Signed Check
         if issuer == subject:
             selfsigned = KATFindingType(id="RDP-CERT-SELFSIGNED")
         yield selfsigned
-
+        # Self-Signed Finding
         nla_finding = Finding(
             finding_type=selfsigned.reference,
             ooi=ip_address,
