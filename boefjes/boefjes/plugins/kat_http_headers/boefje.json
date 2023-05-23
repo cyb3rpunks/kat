@@ -1,6 +1,6 @@
 {
     "id": "http-Headers",
-    "name": "HTTPHeaders",
+    "name": "HTTP Headers",
     "description": "Show the http headers",
     "consumes": [
         "HostnameHTTPURL"
