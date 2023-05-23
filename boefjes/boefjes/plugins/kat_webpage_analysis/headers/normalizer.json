@@ -1,9 +1,0 @@
-{
-    "id": "kat_webpage_analysis_headers_normalize",
-    "consumes": [
-        "openkat-http/headers"
-    ],
-    "produces": [
-        "HTTPHeader"
-    ]
-}
