@@ -12,7 +12,7 @@ def run(normalizer_meta: NormalizerMeta, raw: Union[bytes, str]) -> Iterable[OOI
     
     # NLA Check
     serialnumber = data.get("serialnumber")
-    if serialnumber is None:
+    if serialnumber != None:
         nla = KATFindingType(id="RDP-NLA-NOT-ENFORCED")
         yield nla
         
