@@ -4,6 +4,7 @@
         "rdp"
     ],
     "produces": [
-        "Finding"
+        "Findings",
+        "KATFindingType"
     ]
 }
