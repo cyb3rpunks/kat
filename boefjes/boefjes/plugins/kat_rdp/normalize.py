@@ -2,8 +2,8 @@ import json
 from typing import Iterable, Union
 
 from boefjes.job_models import NormalizerMeta
-from octopoes.models import OOI, Reference, Finding
-from octopoes.models.ooi.findings import KATFindingType
+from octopoes.models import OOI, Reference
+from octopoes.models.ooi.findings import Finding, KATFindingType
 
 
 def run(normalizer_meta: NormalizerMeta, raw: Union[bytes, str]) -> Iterable[OOI]:
