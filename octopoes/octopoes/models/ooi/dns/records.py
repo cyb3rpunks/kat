@@ -141,10 +141,12 @@ class NXDOMAIN(OOI):
 
 class DNSPTRRecord(OOI):
     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
-    ip_address: Reference = ReferenceField(IPAddress)
-    rdns_hostname: Optional[Reference] = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
+    address: Reference = ReferenceField(IPAddress)
+    hostname: Optional[Reference] = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
 
+    _natural_key_attrs = ["address"],
     _reverse_relation_names = {
-        "hostname": "rdns_ptr_records",
-        "rdns_hostname": "rdns_hostname",
+        "address": "rdns_ipaddress",
+        "hostname": "rdns_hostname",
     }
+
