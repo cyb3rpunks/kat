@@ -62,6 +62,16 @@ class IPAddressV6(IPAddress):
         "netblock": "ip_v6_addresses",
     }
 
+class RDNS(IPAddress):
+    object_type: Literal["RDNS"] = "RDNS"
+    hostname: Optional[Reference] = ReferenceField(
+        "HOSTNAME", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
+    )
+
+    _reverse_relation_names = {
+        "HOSTNAME": "RHOSTNAME"
+    }
+
 
 class Protocol(Enum):
     TCP = "tcp"
