@@ -38,6 +38,9 @@ class IPAddress(OOI):
 class IPAddressV4(IPAddress):
     object_type: Literal["IPAddressV4"] = "IPAddressV4"
     address: IPv4Address
+    reverse_dns: Optional[Reference] = ReferenceField(
+        "RDNS_IPV4", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
+    )
 
     netblock: Optional[Reference] = ReferenceField(
         "IPV4NetBlock", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
@@ -52,6 +55,9 @@ class IPAddressV4(IPAddress):
 class IPAddressV6(IPAddress):
     object_type: Literal["IPAddressV6"] = "IPAddressV6"
     address: IPv6Address
+    reverse_dns: Optional[Reference] = ReferenceField(
+        "RDNS_IPV6", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
+    )
 
     netblock: Optional[Reference] = ReferenceField(
         "IPV6NetBlock", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
@@ -61,7 +67,6 @@ class IPAddressV6(IPAddress):
         "network": "ip_v6_addresses",
         "netblock": "ip_v6_addresses",
     }
-
 
 class Protocol(Enum):
     TCP = "tcp"
