@@ -64,8 +64,8 @@ class IPAddressV6(IPAddress):
 
 class RDNS(IPAddress):
     object_type: Literal["RDNS"] = "RDNS"
-    hostname: Optional[Reference] = ReferenceField(
-        "HOSTNAME", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
+    rdns_hostname: Optional[Reference] = ReferenceField(
+        "RDNS_HOSTNAME", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
     )
 
 class Protocol(Enum):
