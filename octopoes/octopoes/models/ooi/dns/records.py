@@ -140,10 +140,9 @@ class NXDOMAIN(OOI):
         return f"NXDOMAIN response on {reference.tokenized.hostname.name}"
     
 
-class RDNSRecord(DNSRecord):
-    object_type: Literal["RDNSRecord"] = "RDNSRecord"
+class DNSPTRRecord(DNSRecord):
+    object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
     dns_record_type: Literal["PTR"] = "PTR"
-
     reverse_dns_hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
 
     _reverse_relation_names = {
