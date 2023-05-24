@@ -1,6 +1,6 @@
 import abc
 import hashlib
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 
 from octopoes.models import OOI, Reference
 from octopoes.models.ooi.dns.zone import Hostname
@@ -144,7 +144,7 @@ class DNSPTRRecord(DNSRecord):
     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
     dns_record_type: Literal["PTR"] = "PTR"
     reverse_dns_hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
-    address: Reference = ReferenceField(IPAddressV4, IPAddressV6)
+    address: Reference = ReferenceField(Union[IPAddressV4, IPAddressV6])
     value: Optional[str]
     ttl: Optional[int]  # todo: validation
 
