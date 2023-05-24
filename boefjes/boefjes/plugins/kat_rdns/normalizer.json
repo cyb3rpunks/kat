@@ -1,9 +1,10 @@
 {
-    "id": "kat_wpfuzz_normalize",
+    "id": "kat_rdns_normalize",
     "consumes": [
-        ""
+        "IPAddressV4",
+        "IPAddressV6"
     ],
     "produces": [
-        ""
+        "Hostname"
     ]
 }
