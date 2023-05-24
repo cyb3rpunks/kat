@@ -1,10 +1,10 @@
 import abc
 import hashlib
-from typing import Literal, Optional, Union
+from typing import Literal, Optional
 
 from octopoes.models import OOI, Reference
 from octopoes.models.ooi.dns.zone import Hostname
-from octopoes.models.ooi.network import IPAddress, IPAddressV4, IPAddressV6
+from octopoes.models.ooi.network import IPAddressV4, IPAddressV6
 from octopoes.models.persistence import ReferenceField
 
 
@@ -138,9 +138,8 @@ class NXDOMAIN(OOI):
     @classmethod
     def format_reference_human_readable(cls, reference: Reference) -> str:
         return f"NXDOMAIN response on {reference.tokenized.hostname.name}"
-    
 
-class DNSPTRRecord(DNSRecord):
-    object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
-    dns_record_type: Literal["PTR"] = "PTR"
-    ip_address: Reference = ReferenceField(IPAddress)
+# class DNSPTRRecord(DNSRecord):
+#     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
+#     dns_record_type: Literal["PTR"] = "PTR"
+#     ip_address: Reference = ReferenceField(IPAddress)
