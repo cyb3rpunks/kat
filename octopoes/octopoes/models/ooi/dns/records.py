@@ -4,7 +4,7 @@ from typing import Literal, Optional, Union
 
 from octopoes.models import OOI, Reference
 from octopoes.models.ooi.dns.zone import Hostname
-from octopoes.models.ooi.network import IPAddressV4, IPAddressV6
+from octopoes.models.ooi.network import IPAddress, IPAddressV4, IPAddressV6
 from octopoes.models.persistence import ReferenceField
 
 
@@ -143,8 +143,8 @@ class NXDOMAIN(OOI):
 class DNSPTRRecord(DNSRecord):
     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
     dns_record_type: Literal["PTR"] = "PTR"
-    reverse_dns_hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
-    address: Reference = ReferenceField(Union[IPAddressV4, IPAddressV6])
+    reverse_dns_hostname: Optional[Reference] = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
+    address: Reference = ReferenceField(IPAddress)
     value: Optional[str]
     ttl: Optional[int]  # todo: validation
 
