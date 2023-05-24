@@ -146,8 +146,3 @@ class DNSPTRRecord(DNSRecord):
     address: Reference = ReferenceField(IPAddress)
     value: Optional[str]
     ttl: Optional[int]  # todo: validation
-
-    @classmethod
-    def format_reference_human_readable(cls, reference: Reference) -> str:
-        dns_record_type = cls._get_record_type()
-        return f"{reference.tokenized.hostname.name} {dns_record_type} {reference.tokenized.reverse_dns_hostname.name}"
