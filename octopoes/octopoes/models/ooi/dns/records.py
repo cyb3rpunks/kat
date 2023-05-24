@@ -4,13 +4,13 @@ from typing import Literal, Optional
 
 from octopoes.models import OOI, Reference
 from octopoes.models.ooi.dns.zone import Hostname
-from octopoes.models.ooi.network import IPAddressV4, IPAddressV6
+from octopoes.models.ooi.network import IPAddressV4, IPAddressV6, IPAddress
 from octopoes.models.persistence import ReferenceField
 
 
 class DNSRecord(OOI, abc.ABC):
     hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=0, max_inherit_scan_level=2)
-    dns_record_type: Literal["A", "AAAA", "CNAME", "MX", "NS", "PTR", "SOA", "SRV", "TXT"]
+    dns_record_type: Literal["A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT"]
     value: str
     ttl: Optional[int]  # todo: validation
 
@@ -139,7 +139,12 @@ class NXDOMAIN(OOI):
     def format_reference_human_readable(cls, reference: Reference) -> str:
         return f"NXDOMAIN response on {reference.tokenized.hostname.name}"
 
-# class DNSPTRRecord(DNSRecord):
-#     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
-#     dns_record_type: Literal["PTR"] = "PTR"
-#     ip_address: Reference = ReferenceField(IPAddress)
+class DNSPTRRecord(OOI):
+    object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
+    ip_address: Reference = ReferenceField(IPAddress)
+    rdns_hostname: Optional[Reference] = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
+
+    _reverse_relation_names = {
+        "hostname": "rdns_ptr_records",
+        "rdns_hostname": "rdns_hostname",
+    }
