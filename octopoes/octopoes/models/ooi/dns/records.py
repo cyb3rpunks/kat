@@ -143,10 +143,9 @@ class NXDOMAIN(OOI):
 class DNSPTRRecord(DNSRecord):
     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
     dns_record_type: Literal["PTR"] = "PTR"
-    reverse_dns_hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
+    address: Reference = ReferenceField(IPAddressV4 | IPAddressV6, max_issue_scan_level=1, max_inherit_scan_level=0)
     ttl: Optional[int]  # todo: validation
 
     _reverse_relation_names = {
-        "hostname": "rdns_records",
-        "reverse_dns_hostname": "reverse_dns_records",
+        "address": "rdns_records",
     }
