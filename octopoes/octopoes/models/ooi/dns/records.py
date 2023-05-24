@@ -10,7 +10,7 @@ from octopoes.models.persistence import ReferenceField
 
 class DNSRecord(OOI, abc.ABC):
     hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=0, max_inherit_scan_level=2)
-    dns_record_type: Literal["A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT"]
+    dns_record_type: Literal["A", "AAAA", "CNAME", "MX", "NS", "PTR", "SOA", "SRV", "TXT"]
     value: str
     ttl: Optional[int]  # todo: validation
 
@@ -143,6 +143,4 @@ class NXDOMAIN(OOI):
 class DNSPTRRecord(DNSRecord):
     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
     dns_record_type: Literal["PTR"] = "PTR"
-    address: Reference = ReferenceField(IPAddress)
-    value: Optional[str]
-    ttl: Optional[int]  # todo: validation
+    ip_address: Reference = ReferenceField(IPAddress)
