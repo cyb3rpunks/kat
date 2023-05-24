@@ -68,11 +68,6 @@ class RDNS(IPAddress):
         "HOSTNAME", optional=True, max_issue_scan_level=0, max_inherit_scan_level=4
     )
 
-    _reverse_relation_names = {
-        "HOSTNAME": "RHOSTNAME"
-    }
-
-
 class Protocol(Enum):
     TCP = "tcp"
     UDP = "udp"
