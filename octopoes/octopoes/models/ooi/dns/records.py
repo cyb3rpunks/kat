@@ -9,9 +9,9 @@ from octopoes.models.persistence import ReferenceField
 
 
 class DNSRecord(OOI, abc.ABC):
-    hostname: Reference = ReferenceField(Hostname, max_issue_scan_level=0, max_inherit_scan_level=2)
+    hostname: Optional[Reference] = ReferenceField(Hostname, max_issue_scan_level=0, max_inherit_scan_level=2)
     dns_record_type: Literal["A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT"]
-    value: str
+    value: Optional[str]
     ttl: Optional[int]  # todo: validation
 
     _natural_key_attrs = ["hostname", "value"]
@@ -139,14 +139,21 @@ class NXDOMAIN(OOI):
     def format_reference_human_readable(cls, reference: Reference) -> str:
         return f"NXDOMAIN response on {reference.tokenized.hostname.name}"
 
-class DNSPTRRecord(OOI):
+class DNSPTRRecord(DNSRecord):
     object_type: Literal["DNSPTRRecord"] = "DNSPTRRecord"
+    dns_record_type: Literal["PTR"] = "PTR"
     address: Reference = ReferenceField(IPAddress)
-    hostname: Optional[Reference] = ReferenceField(Hostname, max_issue_scan_level=1, max_inherit_scan_level=0)
+    hostname: Optional[Reference] = ReferenceField(Hostname)
 
-    _natural_key_attrs = ["address"],
+    _natural_key_attrs = ["address"]
     _reverse_relation_names = {
         "address": "rdns_ipaddress",
         "hostname": "rdns_hostname",
     }
+
+    @classmethod
+    def format_reference_human_readable(cls, reference: Reference):
+        tokenized = reference.tokenized
+        return f"{tokenized.address.address}"
+
 

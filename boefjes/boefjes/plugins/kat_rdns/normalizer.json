@@ -1,8 +1,7 @@
 {
     "id": "kat_rdns_normalize",
     "consumes": [
-        "IPAddressV4",
-        "IPAddressV6"
+        "rdns"
     ],
     "produces": [
         "Hostname"
