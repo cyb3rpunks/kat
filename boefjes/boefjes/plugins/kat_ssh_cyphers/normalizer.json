@@ -1,9 +1,9 @@
 {
     "id": "kat_ssh_cyphers_normalize",
     "consumes": [
-        ""
+        "ssh-cyphers"
     ],
     "produces": [
-        ""
+        "Finding"
     ]
 }
