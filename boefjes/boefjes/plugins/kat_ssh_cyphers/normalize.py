@@ -10,21 +10,34 @@ def run(normalizer_meta: NormalizerMeta, raw: Union[bytes, str]) -> Iterable[OOI
     ip_address = Reference.from_str(normalizer_meta.raw_data.boefje_meta.input_ooi)
     data = json.loads(raw)
     
-    # DES check
-    ciphers = data.get("Available SSH Ciphers")
+    # 3DES check
+    ciphers = data["Available SSH Ciphers"]
     for cipher in ciphers:
-        if cipher == "3des-cbc":
+        if "3des" in cipher.lower():
+            three_des = KATFindingType(id="SSH 3DES possible")
+            yield three_des
+            
+            # DES Finding
+            three_des_finding = Finding(
+                finding_type=three_des.reference,
+                ooi=ip_address,
+                proof=raw,
+                description="3DES is available as a cipher in the SSH connection",
+                reproduce=None  
+            )
+            yield three_des_finding
+
+        if "des" in cipher.lower() and "3des" not in cipher.lower():
             des = KATFindingType(id="SSH DES possible")
             yield des
-        
-        # DES Finding
-        nla_finding = Finding(
-            finding_type=des.reference,
-            ooi=ip_address,
-            proof=raw,
-            description="DES is Available as a cipher in the SSH connection",
-            reproduce=None  
-        )
-        yield nla_finding
-
+            
+            # DES Finding
+            des_finding = Finding(
+                finding_type=des.reference,
+                ooi=ip_address,
+                proof=raw,
+                description="DES is available as a cipher in the SSH connection",
+                reproduce=None  
+            )
+            yield des_finding        
 
